@@ -1,6 +1,7 @@
 const { response } = require("express");
 const express = require("express");
 const router = express.Router();
+const upload = require("../config/multerConfig");
 
 const Guitarra = require("../modelos/guitarras");
 
@@ -33,13 +34,13 @@ router.get("/:guitProd", async (request, response) => {
 });
 
 /* metodo post de una guitarra */
-router.post("/guitarra", (request, response) => {
+router.post("/guitarra", upload.sigle("prodImage"), (request, response) => {
   const guitar = new Guitarra({
     // agarra las propiedades del body del objeto
     nombre: request.body.nombre,
     descripcion: request.body.descripcion,
     cantidad: request.body.cantidad,
-    imagen: request.body.imagen,
+    imagen: request.file.originalname,
   });
   guitar
     .save()
