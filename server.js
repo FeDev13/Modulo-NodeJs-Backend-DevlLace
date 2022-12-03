@@ -13,7 +13,7 @@ const db = require("./config/mysqlConfig");
 //middleware
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({ origin: true }));
 app.use("/productos", productRoute); //uso la variable que tiene la ruta guardada
 app.use("/users", useRoute);
 app.use("/pedidos", orderRoute);
