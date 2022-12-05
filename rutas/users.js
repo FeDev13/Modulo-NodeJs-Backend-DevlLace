@@ -11,7 +11,7 @@ router.post("/user", async (req, res) => {
     if (error)
       return res.status(400).send({ message: error.details[0].message });
 
-    const user = await User.findOne({ nombre: req.body.nombre });
+    const user = await User.findOne({ email: req.body.email });
     if (user)
       return res
         .status(409)
